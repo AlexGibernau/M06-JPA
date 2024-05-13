@@ -1,8 +1,8 @@
 package org.agcpag;
 
+import org.agcpag.pojos.Department;
 import org.agcpag.providers.DataProvider;
 import org.agcpag.providers.DataProviderFactory;
-import org.agcpag.providers.MongoProvider;
 
 import java.io.IOException;
 
@@ -11,8 +11,6 @@ public class Main {
 
         DataProvider provider = DataProviderFactory.getDataProvider();
 
-        System.out.println("Successfully created DataProvider: " + provider.getClass().getName());
-
-        System.out.println(provider.find(1L));
+        System.out.println(provider.find(1L, Department.class));
     }
 }
