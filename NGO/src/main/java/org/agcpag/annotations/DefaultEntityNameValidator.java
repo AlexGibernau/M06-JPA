@@ -1,3 +1,4 @@
+/*
 package org.agcpag.annotations;
 
 public class DefaultEntityNameValidator implements EntityNameValidator {
@@ -14,3 +15,4 @@ public class DefaultEntityNameValidator implements EntityNameValidator {
 
 
 }
+*/

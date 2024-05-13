@@ -1,3 +1,4 @@
+/*
 package org.agcpag.annotations;
 
 import java.lang.annotation.ElementType;
@@ -17,3 +18,4 @@ public @interface Column {
         return name.toUpperCase();
     }
 }
+*/

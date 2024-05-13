@@ -1,5 +1,7 @@
 package org.agcpag.providers;
 
+import org.bson.Document;
+
 public interface DataProvider {
-    <T> T find(Class<T> entityClass, long id);
+    Object find(long id);
 }
