@@ -5,21 +5,11 @@ import org.agcpag.annotations.Entity;
 
 @Entity(name = "departments")
 public class Department {
-
     @Column(name = "_id")
     private long id;
 
     @Column(name = "name")
     private String name;
-
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public long getId() {
         return id;
@@ -27,6 +17,14 @@ public class Department {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override

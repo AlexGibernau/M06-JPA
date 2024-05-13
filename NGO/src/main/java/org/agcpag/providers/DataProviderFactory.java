@@ -9,26 +9,30 @@ import java.util.Properties;
  */
 public class DataProviderFactory {
 
+    public static final String propertiesFileName = "config/ngo.properties";
+
     /**
      * Creates and returns a DataProvider instance based on configuration.
      *
      * @return a DataProvider instance
-     * @throws IOException if an I/O error occurs
      */
-    public static DataProvider getDataProvider() throws IOException {
+    public static DataProvider getDataProvider() {
         Properties props = new Properties();
-        try (InputStream in = DataProviderFactory.class.getClassLoader().getResourceAsStream("config/ngo.properties")) {
+        try (InputStream in = DataProviderFactory.class.getClassLoader().getResourceAsStream(propertiesFileName)) {
             props.load(in);
-            String provider = props.getProperty("PROVIDER");
+            String providerName = props.getProperty("PROVIDER");
 
-            if (provider.equals("org.agcpag.providers.MongoProvider")) {
-                String connectionString = props.getProperty("MONGODB_URI");
-                String dbName = props.getProperty("DATABASE_NAME");
+            Class<?> providerClass = Class.forName(providerName);
+            DataProvider provider = (DataProvider) providerClass.getConstructor().newInstance();
+            provider.config(props);
+            return provider;
 
-                return new MongoProvider(connectionString, dbName);
-            }
-
-            throw new IllegalArgumentException("Unsupported provider: " + provider);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException("Provider not found.", e);
+        } catch (IOException e) {
+            throw new RuntimeException("File \"" + propertiesFileName + "\" not found", e);
+        } catch (ReflectiveOperationException e) {
+            throw new RuntimeException("Class provided is not a DataProvider instance.", e);
         }
     }
 }

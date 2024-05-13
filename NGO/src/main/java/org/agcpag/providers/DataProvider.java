@@ -1,5 +1,8 @@
 package org.agcpag.providers;
 
+import java.util.Map;
+import java.util.Properties;
+
 /**
  * A generic interface for data providers.
  */
@@ -14,4 +17,6 @@ public interface DataProvider {
      * @return the object found
      */
     <T> T find(long id, Class<T> type);
+
+    void config(Properties properties);
 }
