@@ -1,4 +1,4 @@
-package org.agcpag.providers;
+package org.agcpag;
 
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
@@ -6,13 +6,14 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import org.agcpag.annotations.Column;
 import org.agcpag.annotations.Entity;
+import org.agcpag.providers.DataProvider;
 import org.bson.Document;
 
 import java.lang.reflect.Field;
-import java.util.Map;
 import java.util.Properties;
 
 import static com.mongodb.client.model.Filters.*;
+import static com.mongodb.client.model.Filters.eq;
 
 /**
  * A data provider implementation for MongoDB.
